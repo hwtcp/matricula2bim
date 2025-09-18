@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}Detalhes do Aluno{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+        <h4 class="mb-0">Detalhes do Aluno</h4>
+    </div>
+    <div class="card-body">
+        <!-- Informações Pessoais -->
+        <div class="mb-4">
+            <h5 class="text-primary">Informações Pessoais</h5>
+            <hr>
+            <div class="row g-3">
+                <div class="col-md-6"><strong>Nome:</strong> {{ aluno.nome }}</div>
+                <div class="col-md-3"><strong>Data de Nascimento:</strong> {{ aluno.data_nasc }}</div>
+                <div class="col-md-3"><strong>Sexo:</strong> {{ aluno.get_sexo_display }}</div>
+                <div class="col-md-3"><strong>CPF:</strong> {{ aluno.cpf }}</div>
+                <div class="col-md-3"><strong>RG:</strong> {{ aluno.rg }}</div>
+                <div class="col-md-6"><strong>Email:</strong> {{ aluno.email }}</div>
+                <div class="col-md-3"><strong>Telefone:</strong> {{ aluno.telefone }}</div>
+                <div class="col-md-3"><strong>Telefone Emergência:</strong> {{ aluno.telefone2 }}</div>
+            </div>
+        </div>
+
+        <!-- Endereço -->
+        <div class="mb-4">
+            <h5 class="text-primary">Endereço</h5>
+            <hr>
+            <div class="row g-3">
+                <div class="col-md-2"><strong>CEP:</strong> {{ aluno.cep }}</div>
+                <div class="col-md-6"><strong>Endereço:</strong> {{ aluno.endereco }}</div>
+                <div class="col-md-2"><strong>Número:</strong> {{ aluno.numero }}</div>
+                <div class="col-md-6"><strong>Complemento:</strong> {{ aluno.complemento }}</div>
+                <div class="col-md-3"><strong>Bairro:</strong> {{ aluno.bairro }}</div>
+                <div class="col-md-3"><strong>Cidade:</strong> {{ aluno.cidade }}</div>
+                <div class="col-md-2"><strong>UF:</strong> {{ aluno.uf }}</div>
+            </div>
+        </div>
+
+        <!-- Informações Acadêmicas -->
+        <div class="mb-4">
+            <h5 class="text-primary">Informações Acadêmicas</h5>
+            <hr>
+            <div class="row g-3">
+                <div class="col-md-3"><strong>Matrícula:</strong> {{ aluno.matricula }}</div>
+                <div class="col-md-3"><strong>Curso:</strong> {{ aluno.get_curso_display }}</div>
+                <div class="col-md-3"><strong>Série:</strong> {{ aluno.get_serie_display }}</div>
+                <div class="col-md-3"><strong>Turno:</strong> {{ aluno.get_turno_display }}</div>
+                <div class="col-md-3">
+                    <strong>Status:</strong>
+                    {% if aluno.status %}
+                        <span class="badge bg-success">Ativo</span>
+                    {% else %}
+                        <span class="badge bg-danger">Inativo</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end gap-2 mt-3">
+    <!-- Editar -->
+    <a href="{% url 'aluno_update' aluno.pk %}" class="btn btn-warning">
+        <i class="bi bi-pencil me-1"></i> Editar
+    </a>
+
+    <!-- Desativar / Ativar -->
+    <a href="{% url 'aluno_desativar' aluno.pk %}" class="btn btn-secondary">
+        <i class="bi bi-person-x me-1"></i>
+        {% if aluno.status %}
+            Desativar
+        {% else %}
+            Ativar
+        {% endif %}
+    </a>
+
+    <!-- Voltar para lista -->
+    <a href="{% url 'listar_alunos' %}" class="btn btn-secondary">
+        <i class="bi bi-arrow-left me-1"></i> Voltar
+    </a>
+</div>
+{% endblock %}

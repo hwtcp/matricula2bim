@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}Cadastro de Aluno{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">Formulário de Cadastro de Aluno</h4>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            
+            <!-- Informações Pessoais -->
+            <div class="mb-4">
+                <h5 class="text-primary">Informações Pessoais</h5>
+                <hr>
+                <div class="row g-3">
+                    <div class="col-md-6">{{ form.nome.label_tag }} {{ form.nome }}</div>
+                    <div class="col-md-3">{{ form.data_nasc.label_tag }} {{ form.data_nasc }}</div>
+                    <div class="col-md-3">{{ form.sexo.label_tag }} {{ form.sexo }}</div>
+                    <div class="col-md-3">{{ form.cpf.label_tag }} {{ form.cpf }}</div>
+                    <div class="col-md-3">{{ form.rg.label_tag }} {{ form.rg }}</div>
+                </div>
+            </div>
+
+            <!-- Informações de Contato -->
+            <div class="mb-4">
+                <h5 class="text-primary">Informações de Contato</h5>
+                <hr>
+                <div class="row g-3">
+                    <div class="col-md-4">{{ form.email.label_tag }} {{ form.email }}</div>
+                    <div class="col-md-4">{{ form.telefone.label_tag }} {{ form.telefone }}</div>
+                    <div class="col-md-4">{{ form.telefone2.label_tag }} {{ form.telefone2 }}</div>
+                </div>
+            </div>
+
+            <!-- Endereço -->
+            <div class="mb-4">
+                <h5 class="text-primary">Endereço</h5>
+                <hr>
+                <div class="row g-3">
+                    <div class="col-md-2">{{ form.cep.label_tag }} {{ form.cep }}</div>
+                    <div class="col-md-6">{{ form.endereco.label_tag }} {{ form.endereco }}</div>
+                    <div class="col-md-2">{{ form.numero.label_tag }} {{ form.numero }}</div>
+                    <div class="col-md-6">{{ form.complemento.label_tag }} {{ form.complemento }}</div>
+                    <div class="col-md-3">{{ form.bairro.label_tag }} {{ form.bairro }}</div>
+                    <div class="col-md-3">{{ form.cidade.label_tag }} {{ form.cidade }}</div>
+                    <div class="col-md-2">{{ form.uf.label_tag }} {{ form.uf }}</div>
+                </div>
+            </div>
+
+            <!-- Informações Acadêmicas -->
+            <div class="mb-4">
+                <h5 class="text-primary">Informações Acadêmicas</h5>
+                <hr>
+                <div class="row g-3">
+                    <div class="col-md-3">{{ form.matricula.label_tag }} {{ form.matricula }}</div>
+                    <div class="col-md-3">{{ form.curso.label_tag }} {{ form.curso }}</div>
+                    <div class="col-md-3">{{ form.serie.label_tag }} {{ form.serie }}</div>
+                    <div class="col-md-3">{{ form.turno.label_tag }} {{ form.turno }}</div>
+                </div>
+            </div>
+
+            <!-- Observações -->
+            <div class="mb-4">
+                <h5 class="text-primary">Observações</h5>
+                <hr>
+                {{ form.observacoes.label_tag }}
+                {{ form.observacoes }}
+            </div>
+
+            <!-- Botões -->
+            <div class="d-flex justify-content-end gap-2">
+                <button type="reset" class="btn btn-outline-secondary">
+                    <i class="bi bi-x-circle me-2"></i> Limpar
+                </button>
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-person-plus-fill me-2"></i> Cadastrar Aluno
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+

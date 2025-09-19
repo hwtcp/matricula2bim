@@ -6,6 +6,23 @@ class AlunoForm(forms.ModelForm):
     class Meta:
         model = Aluno
         fields = "__all__"
+        labels = {
+            'data_nasc': 'Data de nascimento',
+            'telefone2': 'Telefone Emergencial',
+            'cpf': 'CPF',
+            'rg': 'RG',
+            'email': 'E-mail',
+            'telefone2': 'Telefone Emergencial',
+            'cep': 'CEP',
+            'endereco': 'Endereço',
+            'numero': 'Número',
+            'uf': 'UF',
+            'matricula': 'Matrícula',
+            'serie': 'Série/ano',
+            'observacoes': 'Observações',
+
+
+        }
         widgets = {
             "nome": forms.TextInput(attrs={"class": "form-control"}),
             "data_nasc": forms.DateInput(attrs={"class": "form-control", "type": "date"}),

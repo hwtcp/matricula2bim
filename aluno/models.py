@@ -7,9 +7,9 @@ class Aluno(models.Model):
     ]
     
     UF_CHOICES = [
-        ("RN", "Rio Grande do Norte"),
-        ("CE", "Ceará"),
-        ("PB", "Paraíba"),
+        ("RN", "RN"),
+        ("CE", "CE"),
+        ("PB", "PB"),
     ]
 
     CURSO_CHOICES = [
@@ -46,7 +46,7 @@ class Aluno(models.Model):
     complemento = models.CharField(max_length=50, blank=True, null=True)
     bairro = models.CharField(max_length=100)
     cidade = models.CharField(max_length=100)
-    uf = models.CharField(max_length=80, choices=UF_CHOICES)
+    uf = models.CharField(max_length=2, choices=UF_CHOICES)
     matricula = models.CharField(max_length=30, unique=True)
     curso = models.CharField(max_length=150, choices=CURSO_CHOICES)
     serie = models.CharField(max_length=6, choices=SERIE_CHOICES)

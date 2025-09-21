@@ -5,7 +5,12 @@ from .models import Aluno
 class AlunoForm(forms.ModelForm):
     class Meta:
         model = Aluno
-        fields = "__all__"
+        fields = [
+            "nome", "data_nasc", "cpf", "rg", "sexo", "email", 
+            "telefone", "telefone2", "cep", "endereco", "numero", 
+            "complemento", "bairro", "cidade", "uf", "matricula", 
+            "curso", "serie", "turno", "observacoes"
+        ]
         labels = {
             'data_nasc': 'Data de nascimento',
             'telefone2': 'Telefone Emergencial',
@@ -20,7 +25,6 @@ class AlunoForm(forms.ModelForm):
             'matricula': 'Matrícula',
             'serie': 'Série/ano',
             'observacoes': 'Observações',
-
 
         }
         widgets = {

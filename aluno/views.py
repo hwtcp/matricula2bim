@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Aluno
 from .form import AlunoForm
 from django.core.paginator import Paginator
+from django.db.models import Q
 
 def listar_alunos(request):
     busca = request.GET.get('busca', '')
@@ -11,13 +12,13 @@ def listar_alunos(request):
 
     if busca:
         alunos = alunos.filter(
-            nome__icontains=busca
-        ) | alunos.filter(
-            matricula__icontains=busca
+            Q(nome__icontains=busca) | Q(matricula__icontains=busca)
         )
 
     if curso:
         alunos = alunos.filter(curso=curso)
+
+    alunos = alunos.order_by('id') 
 
     paginator = Paginator(alunos, 10)
     page_number = request.GET.get('page')
@@ -37,6 +38,7 @@ def listar_alunos(request):
     }
 
     return render(request, "index.html", context)
+
 
 def aluno_criar(request):
     if request.method == 'POST':

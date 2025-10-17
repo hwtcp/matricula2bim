@@ -1,10 +1,42 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Aluno
 from .form import AlunoForm
+from django.core.paginator import Paginator
 
 def listar_alunos(request):
-    alunos= Aluno.objects.all()
-    return render(request, "index.html", {'alunos': alunos})
+    busca = request.GET.get('busca', '')
+    curso = request.GET.get('curso', '')
+
+    alunos = Aluno.objects.all()
+
+    if busca:
+        alunos = alunos.filter(
+            nome__icontains=busca
+        ) | alunos.filter(
+            matricula__icontains=busca
+        )
+
+    if curso:
+        alunos = alunos.filter(curso=curso)
+
+    paginator = Paginator(alunos, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    inicio = (page_obj.number - 1) * paginator.per_page + 1
+    fim = inicio + len(page_obj.object_list) - 1
+    total = paginator.count
+
+    context = {
+        'page_obj': page_obj,
+        'busca': busca,
+        'curso': curso,
+        'inicio': inicio,
+        'fim': fim,
+        'total': total,
+    }
+
+    return render(request, "index.html", context)
 
 def aluno_criar(request):
     if request.method == 'POST':

@@ -21,11 +21,11 @@ from aluno.views import listar_alunos, aluno_criar, aluno_update, aluno_excluir,
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', listar_alunos, name='listar_alunos'),
-    path('novo/', aluno_criar, name='aluno_criar'),
-    path('<int:pk>/editar/', aluno_update, name='aluno_update'),  
-    path('<int:pk>/excluir/', aluno_excluir, name='aluno_excluir'),
-    path('<int:pk>/desativar/', aluno_desativar, name='aluno_desativar'),
-    path('<int:pk>/detalhes/', aluno_detalhes, name='aluno_detalhes'), 
+    path('aluno/novo/', aluno_criar, name='aluno_criar'),
+    path('aluno/<int:pk>/editar/', aluno_update, name='aluno_update'),  
+    path('aluno/<int:pk>/excluir/', aluno_excluir, name='aluno_excluir'),
+    path('aluno/<int:pk>/desativar/', aluno_desativar, name='aluno_desativar'),
+    path('aluno/<int:pk>/detalhes/', aluno_detalhes, name='aluno_detalhes'), 
 ]
 
 
